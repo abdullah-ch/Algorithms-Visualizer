@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
+import Node from "../Node/Node";
+import styles from "../PathFinder/PathFinder.module.css";
 
 const rows = 5;
-const columns = 5;
+const columns = 15;
 const PathFinder = () => {
   const [Grid, setGrid] = useState([]);
 
+  useEffect(
+    () => {
+      initializeGrid();
+    },
+    // eslint-disable-next-line
+    []
+  );
+
   const initializeGrid = () => {
-    const grid = new Array(columns);
-    for (let index = 0; index < grid.length; index++) {
-      grid[index] = new Array(rows);
+    const grid = new Array(rows);
+    for (let index = 0; index < rows; index++) {
+      grid[index] = new Array(columns);
     }
 
     createSpot(grid);
@@ -31,10 +41,31 @@ const PathFinder = () => {
     this.h = 0;
   }
 
-  return (
+  //   console.log("Grid", Grid);
+  //   console.log("Grid rows", Grid.length);
+  //   console.log("Grid columns", Grid[0].length);
+
+  const gridMadeUpOfNodes = (
     <div>
-      <h1>PathFinder Component</h1>
+      {Grid.map((row, index) => {
+        console.log("Helpppppp", index);
+        return (
+          <div key={index} className={styles.rowWrapper}>
+            {row.map((column, index) => {
+              console.log("Rows are", index);
+              return <Node key={index} />;
+            })}
+          </div>
+        );
+      })}
     </div>
+  );
+
+  return (
+    <>
+      <h1 className={styles.container}>Algorithm Visualizer</h1>
+      <div className={styles.container}>{gridMadeUpOfNodes}</div>
+    </>
   );
 };
 
