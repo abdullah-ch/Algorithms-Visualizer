@@ -1,18 +1,18 @@
 import React from "react";
-import "./Node.module.css";
+import "./Node.css";
 
 const Node = ({ isStartingPoint, isEndingPoint, row, column }) => {
   const classs = isStartingPoint
     ? "node-start"
     : isEndingPoint
     ? "node-end"
-    : null;
+    : "";
 
   console.log("classess", classs);
 
   return (
     <div>
-      <div className="node"></div>
+      <div className={`node ${classs}`}></div>
       {isStartingPoint
         ? console.log("green", `row column are ${row} and ${column}`)
         : null}

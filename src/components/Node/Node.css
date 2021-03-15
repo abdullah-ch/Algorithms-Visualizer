@@ -1,0 +1,15 @@
+.node {
+  height: 45px;
+  width: 45px;
+    border: 2px  solid black;
+}
+
+.node-start{
+  
+  background-color: greenyellow;
+}
+
+.node-end{
+ 
+  background-color:red;
+}
