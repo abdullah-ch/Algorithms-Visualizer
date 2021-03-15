@@ -1,11 +1,24 @@
 import React from "react";
-import styles from "./Node.module.css";
+import "./Node.module.css";
 
-const Node = () => {
-  console.log("Why aren't you showing yourself");
+const Node = ({ isStartingPoint, isEndingPoint, row, column }) => {
+  const classs = isStartingPoint
+    ? "node-start"
+    : isEndingPoint
+    ? "node-end"
+    : null;
+
+  console.log("classess", classs);
+
   return (
     <div>
-      <div className={styles.node}></div>
+      <div className="node"></div>
+      {isStartingPoint
+        ? console.log("green", `row column are ${row} and ${column}`)
+        : null}
+      {isEndingPoint
+        ? console.log("laal", `row column are ${row} and ${column}`)
+        : null}
     </div>
   );
 };

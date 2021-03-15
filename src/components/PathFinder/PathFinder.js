@@ -2,8 +2,15 @@ import React, { useState, useEffect } from "react";
 import Node from "../Node/Node";
 import styles from "../PathFinder/PathFinder.module.css";
 
-const rows = 5;
-const columns = 15;
+const rows = 10;
+const columns = 25;
+
+// need to make this dynamic
+const startNodeRow = 0;
+const startNodeColumn = 0;
+const endNodeRow = rows - 1;
+const endNodeColumn = columns - 1;
+
 const PathFinder = () => {
   const [Grid, setGrid] = useState([]);
 
@@ -36,6 +43,9 @@ const PathFinder = () => {
   function Spot(i, j) {
     this.x = i;
     this.y = j;
+    this.isStartingPoint =
+      this.x === startNodeRow && this.y === startNodeColumn;
+    this.isEndingPoint = this.x === endNodeRow && this.y === endNodeColumn;
     this.g = 0;
     this.f = 0;
     this.h = 0;
@@ -48,12 +58,22 @@ const PathFinder = () => {
   const gridMadeUpOfNodes = (
     <div>
       {Grid.map((row, index) => {
-        console.log("Helpppppp", index);
+        console.log("Rrrrrrow mein kia hai", row);
         return (
           <div key={index} className={styles.rowWrapper}>
             {row.map((column, index) => {
-              console.log("Rows are", index);
-              return <Node key={index} />;
+              console.log("column mein kia hai", column);
+              const { isStartingPoint, isEndingPoint, x, y } = column;
+              console.log({ isStartingPoint, isEndingPoint });
+              return (
+                <Node
+                  key={index}
+                  isStartingPoint={isStartingPoint}
+                  isEndingPoint={isEndingPoint}
+                  row={x}
+                  column={y}
+                />
+              );
             })}
           </div>
         );
